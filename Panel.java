@@ -8,30 +8,21 @@ import java.awt.event.MouseAdapter;
 
 public class Panel extends JPanel {
 
-    private String figureType;
-
-    // polygon stuff
-    private int[] polyX;
-    private int[] polyY;
-    private int polyPoints;
+    private int[] xCoordinates;
+    private int[] yCoordinates;
+    private int pointCount;
 
     /**
      * Polygon constructor
-     * 
-     * @param type
-     * @param polyX
-     * @param polyY
-     * @param polyPoints
+     * @param pX An array of x coordinates
+     * @param pY An array of y coordinates
+     * @param pPoints The total number of points in the figure
      */
-    public Panel(String type, int[] polyX, int[] polyY, int polyPoints) {
+    public Panel(int[] pX, int[] pY, int pPoints) {
 
-        if (type != "polygon") return;
-
-        this.figureType = type;
-
-        this.polyX = polyX;
-        this.polyY = polyY;
-        this.polyPoints = polyPoints;
+        this.xCoordinates = pX;
+        this.yCoordinates = pY;
+        this.pointCount = pPoints;
 
         setBorder(BorderFactory.createLineBorder(Color.black));
 
@@ -55,8 +46,11 @@ public class Panel extends JPanel {
 
         g.setColor(Color.RED);
 
-        g.drawPolygon(polyX, polyY, polyPoints);
+        // g.drawPolygon(xCoordinates, yCoordinates, pointCount);
+        g.fillPolygon(xCoordinates, yCoordinates, pointCount);
     }
+
+    
 
     // private void moveFigure(int pX, int pY) {
     // int offset = 1;

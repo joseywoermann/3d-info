@@ -6,6 +6,36 @@ public class Util
     public static final int EXIT_SUCCESS = 0;
     public static final int NULL = 0;
     
+    private static Matrix rotationMatrix;
+    
+    public static void rotate(Matrix matrixToRotate, double dRadian)
+    {
+        rotationMatrix = new Matrix(2, 1);
+        rotationMatrix.set(0, 0, Math.cos(dRadian));
+        rotationMatrix.set(1, 0, Math.sin(dRadian));
+        
+        matrixToRotate.multiply(rotationMatrix);
+    }
+    
+    public static void transform(Matrix matrixToTransform, Matrix transformMatrix)
+    {
+        matrixToTransform.add(transformMatrix);
+    }
+    
+    public static void scale(Matrix matrixToScale, Matrix scaleMatrix)
+    {
+        matrixToScale.multiply(scaleMatrix);
+    }
+    
+    public static Matrix createVector(double dX, double dY)
+    {
+        Matrix matrix = new Matrix(2, 1);
+        
+        matrix.set(0, 0, dX);
+        matrix.set(1, 0, dY);
+        
+        return matrix;
+    }
     
     /** ================ josey's stuff ================== */
     
@@ -54,6 +84,19 @@ public class Util
     public static void wait(int pSeconds) {
         try {
             Thread.sleep(pSeconds * 1000);
+        } catch (InterruptedException ex) {
+            Thread.currentThread().interrupt();
+        }
+    }
+
+    /**
+     * Pauses the program
+     * 
+     * @param pMilliseconds How long should the program be paused?
+     */
+    public static void waitMS(int pMilliseconds) {
+        try {
+            Thread.sleep(pMilliseconds);
         } catch (InterruptedException ex) {
             Thread.currentThread().interrupt();
         }

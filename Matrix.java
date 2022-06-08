@@ -113,7 +113,11 @@ public class Matrix
      * @param matrix: The other matrix
      */
     public void multiply(Matrix matrix)
-    {    
+    {   
+        multiply(getMatrix(), matrix.getMatrix());
+        return;
+        
+        /*
         Matrix rowMatrix = null;
         Matrix columnMatrix = null;
         // Zeilenvektor finden
@@ -148,7 +152,29 @@ public class Matrix
             }
         }
         
-        set(resultMatrix.getMatrix());
+        set(resultMatrix.getMatrix());*/
+    }
+    
+    private double multiplyMatricesCell(double[][] firstMatrix, double[][] secondMatrix, int row, int col)
+    {
+        double cell = 0;
+        for (int i = 0; i < secondMatrix.length; i++) {
+            cell += firstMatrix[row][i] * secondMatrix[i][col];
+        }
+        return cell;
+    }
+    
+    private void multiply(double[][] firstMatrix, double[][] secondMatrix) 
+    {
+        double[][] result = new double[firstMatrix.length][secondMatrix[0].length];
+    
+        for (int row = 0; row < result.length; row++) {
+            for (int col = 0; col < result[row].length; col++) {
+                result[row][col] = multiplyMatricesCell(firstMatrix, secondMatrix, row, col);
+            }
+        }
+    
+        set(result);
     }
     
     /**
