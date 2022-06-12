@@ -14,8 +14,9 @@ public class Panel extends JPanel {
 
     /**
      * Polygon constructor
-     * @param pX An array of x coordinates
-     * @param pY An array of y coordinates
+     * 
+     * @param pX      An array of x coordinates
+     * @param pY      An array of y coordinates
      * @param pPoints The total number of points in the figure
      */
     public Panel(int[] pX, int[] pY, int pPoints) {
@@ -28,7 +29,6 @@ public class Panel extends JPanel {
 
         addMouseMotionListener(new MouseAdapter() {
             public void mouseDragged(MouseEvent e) {
-                // moveFigure(e.getX(), e.getY());
                 Util.debugMouseLocation(e.getX(), e.getY());
             }
         });
@@ -43,22 +43,7 @@ public class Panel extends JPanel {
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-
         g.setColor(Color.RED);
-
-        // g.drawPolygon(xCoordinates, yCoordinates, pointCount);
         g.fillPolygon(xCoordinates, yCoordinates, pointCount);
     }
-
-    
-
-    // private void moveFigure(int pX, int pY) {
-    // int offset = 1;
-    // if ((squareX != pX) || (squareY != pY)) {
-    // repaint(squareX, squareY, squareW + offset, squareH + offset);
-    // squareX = pX;
-    // squareY = pY;
-    // repaint(squareX, squareY, squareW + offset, squareH + offset);
-    // }
-    // }
 }

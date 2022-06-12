@@ -1,80 +1,43 @@
-public class Util
-{
+public class Util {
     public static final String sOOBAccess = "You may not access an element out of bounds!";
-    
+
     public static final int EXIT_FAILURE = -1;
     public static final int EXIT_SUCCESS = 0;
     public static final int NULL = 0;
-    
+
     private static Matrix rotationMatrix;
-    
-    public static void rotate(Matrix matrixToRotate, double dRadian)
-    {
+
+    public static void rotate(Matrix matrixToRotate, double dRadian) {
         rotationMatrix = new Matrix(2, 1);
         rotationMatrix.set(0, 0, Math.cos(dRadian));
         rotationMatrix.set(1, 0, Math.sin(dRadian));
-        
+
         matrixToRotate.multiply(rotationMatrix);
     }
-    
-    public static void transform(Matrix matrixToTransform, Matrix transformMatrix)
-    {
+
+    public static void transform(Matrix matrixToTransform, Matrix transformMatrix) {
         matrixToTransform.add(transformMatrix);
     }
-    
-    public static void scale(Matrix matrixToScale, Matrix scaleMatrix)
-    {
+
+    public static void scale(Matrix matrixToScale, Matrix scaleMatrix) {
         matrixToScale.multiply(scaleMatrix);
     }
-    
-    public static Matrix createVector(double dX, double dY)
-    {
+
+    public static Matrix createVector(double dX, double dY) {
         Matrix matrix = new Matrix(2, 1);
-        
+
         matrix.set(0, 0, dX);
         matrix.set(1, 0, dY);
-        
+
         return matrix;
     }
-    
+
     /** ================ josey's stuff ================== */
-    
+
     /** The width of the window frame */
     public static final int frameWidth = 960;
     /** The height of the window frame */
     public static final int frameHeight = 540;
-
-    /**
-     * This method extracts all the x-coordinates from a given array of {@code Coordinate}s.
-     * @param pCoordinates
-     * @return
-     */
-    public static int[] extractXCoordinates(Coordinate[] pCoordinates) {
-        int[] xCoordinates = new int[pCoordinates.length];
-
-        for (int i = 0; i < pCoordinates.length; i++) {
-            xCoordinates[i] = pCoordinates[i].x;
-        }
-
-        return xCoordinates;
-    }
-
-
-    /**
-     * This method extracts all the y-coordinates from a given array of {@code Coordinate}s.
-     * @param pCoordinates
-     * @return
-     */
-    public static int[] extractYCoordinates(Coordinate[] pCoordinates) {
-        int[] yCoordinates = new int[pCoordinates.length];
-
-        for (int i = 0; i < pCoordinates.length; i++) {
-            yCoordinates[i] = pCoordinates[i].y;
-        }
-
-        return yCoordinates;
-    }
-
 
     /**
      * Pauses the program
@@ -121,3 +84,11 @@ public class Util
         System.out.println(text);
     }
 };
+
+// // arrow coordinates
+// int[] arrowX = { 244, 546, 546, 847, 546, 546, 244 };
+// int[] arrowY = { 215, 215, 122, 306, 489, 396, 396 };
+
+// // star coordinates
+// int[] starX = { 423, 477, 643, 514, 562, 425, 287, 333, 200, 370 };
+// int[] starY = { 50, 203, 209, 299, 451, 365, 455, 299, 208, 200 };
