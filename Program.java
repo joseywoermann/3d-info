@@ -6,7 +6,6 @@ import java.awt.event.ComponentAdapter;
 public class Program {
 
     private JFrame frame;
-    private Matrix[] coordinates;
 
     /**
      * Construct a new Program
@@ -22,8 +21,7 @@ public class Program {
 
                 frame.addComponentListener(new ComponentAdapter() {
                     public void componentResized(ComponentEvent cE) {
-                        System.out.println(
-                                "Width: " + cE.getComponent().getWidth() + " Height: " + cE.getComponent().getHeight());
+                        System.out.println("Width: " + cE.getComponent().getWidth() + " Height: " + cE.getComponent().getHeight());
                     }
                 });
                 frame.setVisible(true);
@@ -38,10 +36,9 @@ public class Program {
         Matrix m3 = Util.createVector(200, 200);
         Matrix m4 = Util.createVector(200, 100);
 
-        // Matrix[] matrices = { m1, m2, m3, m4 };
-        this.coordinates = new Matrix[] { m1, m2, m3, m4 };
+        Matrix[] matrices = { m1, m2, m3, m4 };
 
-        this.draw(this.coordinates);
+        this.draw(matrices);
     }
 
     /**
@@ -62,7 +59,7 @@ public class Program {
 
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                frame.add(new Panel(x, y, x.length));
+                frame.add(new Panel(x, y));
                 frame.pack();
             }
         });

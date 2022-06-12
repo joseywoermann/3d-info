@@ -10,20 +10,17 @@ public class Panel extends JPanel {
 
     private int[] xCoordinates;
     private int[] yCoordinates;
-    private int pointCount;
 
     /**
      * Polygon constructor
      * 
-     * @param pX      An array of x coordinates
-     * @param pY      An array of y coordinates
-     * @param pPoints The total number of points in the figure
+     * @param pX An array of x coordinates
+     * @param pY An array of y coordinates
      */
-    public Panel(int[] pX, int[] pY, int pPoints) {
+    public Panel(int[] pX, int[] pY) {
 
         this.xCoordinates = pX;
         this.yCoordinates = pY;
-        this.pointCount = pPoints;
 
         setBorder(BorderFactory.createLineBorder(Color.black));
 
@@ -32,7 +29,6 @@ public class Panel extends JPanel {
                 Util.debugMouseLocation(e.getX(), e.getY());
             }
         });
-
     }
 
     @Override
@@ -44,6 +40,6 @@ public class Panel extends JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.setColor(Color.RED);
-        g.fillPolygon(xCoordinates, yCoordinates, pointCount);
+        g.fillPolygon(xCoordinates, yCoordinates, xCoordinates.length);
     }
 }
