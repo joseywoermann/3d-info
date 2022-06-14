@@ -1,5 +1,4 @@
 import javax.swing.JPanel;
-import javax.swing.BorderFactory;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -12,17 +11,12 @@ public class Panel extends JPanel {
     /**
      * Polygon constructor
      * 
-     * @param pX An array of x coordinates
-     * @param pY An array of y coordinates
+     * @param pX: An array of x coordinates
+     * @param pY: An array of y coordinates
      */
     public Panel(int[] pX, int[] pY) {
-
         this.xCoordinates = pX;
         this.yCoordinates = pY;
-
-        setBorder(BorderFactory.createLineBorder(Color.black));
-
-        setFocusable(true);
     }
 
     @Override

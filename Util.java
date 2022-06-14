@@ -1,3 +1,5 @@
+import java.awt.event.KeyEvent;
+
 public class Util {
     public static final String sOOBAccess = "You may not access an element out of bounds!";
 
@@ -13,22 +15,18 @@ public class Util {
         rotationMatrix.set(1, 0, Math.sin(dRadian));
 
         matrixToRotate.multiply(rotationMatrix);
-        // return matrixToRotate;
     }
 
     public static void transform(Matrix matrixToTransform, Matrix transformMatrix) {
         matrixToTransform.add(transformMatrix);
-        // return matrixToTransform;
     }
 
     public static void scale(Matrix matrixToScale, Matrix scaleMatrix) {
         matrixToScale.multiply(scaleMatrix);
-        // return matrixToScale;
     }
 
     public static void scale(Matrix matrixToScale, double dScalar) {
         matrixToScale.multiply(dScalar);
-        // return matrixToScale;
     }
 
     public static Matrix createVector(double dX, double dY) {
@@ -48,6 +46,26 @@ public class Util {
     public static final int frameHeight = 540;
 
     /**
+     * Determine if the given key code corresponds to a key of the WASD group.
+     * 
+     * @param keyCode
+     */
+    public static boolean isWASD(int keyCode) {
+        return keyCode == KeyEvent.VK_W || keyCode == KeyEvent.VK_A || keyCode == KeyEvent.VK_S
+                || keyCode == KeyEvent.VK_D;
+    }
+
+    /**
+     * Determine if the given key code corresponds to either the left or the right
+     * arrow key.
+     * 
+     * @param keyCode
+     */
+    public static boolean isLR(int keyCode) {
+        return keyCode == KeyEvent.VK_LEFT || keyCode == KeyEvent.VK_RIGHT;
+    }
+
+    /**
      * Pauses the program
      * 
      * @param pSeconds How long should the program be paused?
@@ -61,23 +79,10 @@ public class Util {
     }
 
     /**
-     * Pauses the program
-     * 
-     * @param pMilliseconds How long should the program be paused?
-     */
-    public static void waitMS(int pMilliseconds) {
-        try {
-            Thread.sleep(pMilliseconds);
-        } catch (InterruptedException ex) {
-            Thread.currentThread().interrupt();
-        }
-    }
-
-    /**
      * Log the current mouse pointer location to the console.
      * 
-     * @param mouseX: The x coordinate of the pointer
-     * @param mouseY: The y coordinate of the pointer
+     * @param mouseX The x coordinate of the pointer
+     * @param mouseY The y coordinate of the pointer
      */
     public static void debugMouseLocation(int mouseX, int mouseY) {
         System.out.println("[MOUSE_LOCATION_UPDATE]: " + mouseX + " : " + mouseY);
@@ -86,17 +91,9 @@ public class Util {
     /**
      * It's for debugging
      * 
-     * @param text: The text to log to the console
+     * @param text The text to log to the console
      */
     public static void cry(String text) {
         System.out.println(text);
     }
 };
-
-// // arrow coordinates
-// int[] arrowX = { 244, 546, 546, 847, 546, 546, 244 };
-// int[] arrowY = { 215, 215, 122, 306, 489, 396, 396 };
-
-// // star coordinates
-// int[] starX = { 423, 477, 643, 514, 562, 425, 287, 333, 200, 370 };
-// int[] starY = { 50, 203, 209, 299, 451, 365, 455, 299, 208, 200 };
