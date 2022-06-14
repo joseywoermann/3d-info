@@ -114,69 +114,41 @@ public class Matrix
      */
     public void multiply(Matrix matrix)
     {   
-        multiply(getMatrix(), matrix.getMatrix());
-        return;
-        
-        /*
         Matrix rowMatrix = null;
         Matrix columnMatrix = null;
-        // Zeilenvektor finden
-        if(matrix.getRowAmount() == getColumnAmount())
-        {
-            rowMatrix = matrix;
-            columnMatrix = this;
-        }
         
-        if(matrix.getColumnAmount() == getRowAmount())
+        // You need the copies of 'this' to not intefere with
+        // the null set and the multiplication later on.
+        
+        if(getRowAmount() == matrix.getColumnAmount())
         {
-            rowMatrix = this;
+            rowMatrix = new Matrix(getMatrix()); // a copy of this
             columnMatrix = matrix;
         }
-        
-        // Falls inkompatibel; Exception
-        if(rowMatrix == null)
+        else if(getColumnAmount() == matrix.getRowAmount())
         {
-            throw new Error("You cannot multiply these matrices.");
+            rowMatrix = matrix;
+            columnMatrix = new Matrix(getMatrix()); // a copy of this
+        }
+        else
+        {
+            throw new Error("You cannot multiply these matrices!");
         }
         
-        Matrix resultMatrix = new Matrix(rowMatrix.getRowAmount(), columnMatrix.getColumnAmount());
-         
-        for(int i = 0; i < rowMatrix.getRowAmount(); ++i)
+        set(new double[rowMatrix.getRowAmount()][columnMatrix.getColumnAmount()]);
+
+        for(int iRowIndex = 0; iRowIndex < rowMatrix.getRowAmount(); ++iRowIndex)
         {
-            for(int j = 0; j < columnMatrix.getColumnAmount(); ++j)
+            for(int iColumnIndex = 0; iColumnIndex < columnMatrix.getColumnAmount(); ++iColumnIndex)
             {
-                for(int k = 0; k < columnMatrix.getRowAmount(); ++k)
+                for(int i = 0; i < rowMatrix.getColumnAmount(); ++i)
                 {
-                    resultMatrix.add(i, j, rowMatrix.getValue(i, k) * columnMatrix.getValue(k, j));
+                    m_daaMatrix[iRowIndex][iColumnIndex] += rowMatrix.getValue(iRowIndex, i) * columnMatrix.getValue(i, iColumnIndex);
                 }
             }
         }
-        
-        set(resultMatrix.getMatrix());*/
     }
-    
-    private double multiplyMatricesCell(double[][] firstMatrix, double[][] secondMatrix, int row, int col)
-    {
-        double cell = 0;
-        for (int i = 0; i < secondMatrix.length; i++) {
-            cell += firstMatrix[row][i] * secondMatrix[i][col];
-        }
-        return cell;
-    }
-    
-    private void multiply(double[][] firstMatrix, double[][] secondMatrix) 
-    {
-        double[][] result = new double[firstMatrix.length][secondMatrix[0].length];
-    
-        for (int row = 0; row < result.length; row++) {
-            for (int col = 0; col < result[row].length; col++) {
-                result[row][col] = multiplyMatricesCell(firstMatrix, secondMatrix, row, col);
-            }
-        }
-    
-        set(result);
-    }
-    
+
     /**
      * This method sets the matrix to a constant value.
      * That is useful for e.g. initialisation.
@@ -276,7 +248,7 @@ public class Matrix
         
         for(int iRow = 0; iRow < m_daaMatrix.length; ++iRow)
         {
-            daaMatrixCopy[iRow] = new double[m_daaMatrix.length];
+            daaMatrixCopy[iRow] = new double[m_daaMatrix[iRow].length];
             for(int iColumn = 0; iColumn < m_daaMatrix[iRow].length; ++iColumn)
             {
                 daaMatrixCopy[iRow][iColumn] = getValue(iRow, iColumn);

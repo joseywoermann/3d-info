@@ -9,6 +9,51 @@ public class Util {
 
     private static Matrix rotationMatrix;
 
+    public static Matrix returnTestMatrices(int i)
+    {
+        switch(i)
+        {
+            case 1:
+                Matrix m1 = new Matrix(3,4);
+                m1.set(5);
+                
+                for(int j = 0; j < 4; ++j)
+                {
+                   m1.set(1,j,6);
+                }
+                
+                for(int j = 0; j < 4; ++j)
+                {
+                   m1.set(2,j,7);
+                }
+                
+                return m1;
+            case 2:
+                Matrix m2 = new Matrix(4,3);
+                
+                m2.set(8);
+                
+                for(int j = 0; j < 3; ++j)
+                {
+                   m2.set(1,j,9);
+                }
+                
+                for(int j = 0; j < 3; ++j)
+                {
+                   m2.set(2,j,10);
+                }
+                
+                for(int j = 0; j < 3; ++j)
+                {
+                   m2.set(3,j,11);
+                }
+                
+                return m2;
+        }
+        
+        return null;
+    }
+    
     public static void rotate(Matrix matrixToRotate, double dRadian) {
         rotationMatrix = new Matrix(2, 1);
         rotationMatrix.set(0, 0, Math.cos(dRadian));
