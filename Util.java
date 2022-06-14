@@ -7,28 +7,28 @@ public class Util {
 
     private static Matrix rotationMatrix;
 
-    public static Matrix rotate(Matrix matrixToRotate, double dRadian) {
+    public static void rotate(Matrix matrixToRotate, double dRadian) {
         rotationMatrix = new Matrix(2, 1);
         rotationMatrix.set(0, 0, Math.cos(dRadian));
         rotationMatrix.set(1, 0, Math.sin(dRadian));
 
         matrixToRotate.multiply(rotationMatrix);
-        return matrixToRotate;
+        // return matrixToRotate;
     }
 
-    public static Matrix transform(Matrix matrixToTransform, Matrix transformMatrix) {
+    public static void transform(Matrix matrixToTransform, Matrix transformMatrix) {
         matrixToTransform.add(transformMatrix);
-        return matrixToTransform;
+        // return matrixToTransform;
     }
 
-    public static Matrix scale(Matrix matrixToScale, Matrix scaleMatrix) {
+    public static void scale(Matrix matrixToScale, Matrix scaleMatrix) {
         matrixToScale.multiply(scaleMatrix);
-        return matrixToScale;
+        // return matrixToScale;
     }
 
-    public static Matrix scale(Matrix matrixToScale, double dScalar) {
+    public static void scale(Matrix matrixToScale, double dScalar) {
         matrixToScale.multiply(dScalar);
-        return matrixToScale;
+        // return matrixToScale;
     }
 
     public static Matrix createVector(double dX, double dY) {
